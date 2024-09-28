@@ -13,7 +13,7 @@ jq '.["map_images"][0]["pictures"] | map(select(.data_type == "measurement")) | 
     < animation.json \
     > last_measurement.json
 
-file_name="$(jq -r '.radar_url | split("/")[-1]' < last_measurement.json)"
+file_name="$(jq -r '.radar_url | split("/")[-1]' < last_measurement.json | tr -d '/')"
 radar_url="https://www.meteoschweiz.admin.ch$(jq -r '.radar_url' < last_measurement.json)"
 
 mkdir -p data/
