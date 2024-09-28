@@ -19,6 +19,6 @@ radar_url="https://www.meteoschweiz.admin.ch$(jq -r '.radar_url' < last_measurem
 mkdir -p data/
 echo "Downloading '${radar_url}' to 'data/$file_name'"
 curl "${radar_url}" \
-    > "data/$file_name"
+    | jq > "data/$file_name"
 
 rm *.json
